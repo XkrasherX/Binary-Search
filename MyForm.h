@@ -166,6 +166,7 @@ namespace lab8 {
 			this->IndividualTaskButton->TabIndex = 7;
 			this->IndividualTaskButton->Text = L"Індивідуальне завдання";
 			this->IndividualTaskButton->UseVisualStyleBackColor = true;
+			this->IndividualTaskButton->Click += gcnew System::EventHandler(this, &MyForm::IndividualTaskButton_Click);
 			// 
 			// ShowArrayButton
 			// 
@@ -203,7 +204,7 @@ namespace lab8 {
 #pragma endregion
 	//кнопка для генерації масиву
 	private: System::Void GenerateRandArrButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+		array->clearAllData();
 		InformationTextBox->Clear();
 		
 		//створення відсортованого масиву з випадковими числами
@@ -250,5 +251,20 @@ namespace lab8 {
 			InformationTextBox->Text += " " + Convert::ToString((*array)[i]);
 		}
 	}
+private: System::Void IndividualTaskButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	InformationTextBox->Clear();
+
+	int sum = 0;
+	//вивід масиву
+	array->replaceZeroWithAbsSumOfNegativeNum(sum);
+
+	InformationTextBox->Text = "Сума від'ємних елементів(за модулем): " + Convert::ToString(sum)
+		+ Environment::NewLine + "Масив після індивідуального завдання: " 
+		+ Environment::NewLine;
+
+	for (int i = 0; i < array->sizeOfVector();i++) {
+		InformationTextBox->Text += " " + Convert::ToString((*array)[i]);
+	}
+}
 };
 }

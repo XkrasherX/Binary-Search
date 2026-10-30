@@ -30,6 +30,7 @@ public:
 
     int sizeOfVector() { return array.size(); }
 
+    void clearAllData() { return array.clear(); }
 	void createSortedArray(int size) {
 		//генерація випадкового числа(від'ємного також)
 		std::random_device rand;
@@ -44,20 +45,19 @@ public:
 	}
 
     //індивідуальне завдання
-    void replaceZeroWithAbsSumOfNegativeNum(std::vector<int>& arr) {
+    void replaceZeroWithAbsSumOfNegativeNum(int &sum) {
         int i = 0;
-        int abs_sum = 0;
-        
+                
         //обрахунок суми від'ємних значень
-        while (i < arr.size() && arr[i] < 0) { abs_sum += arr[i++]; }
+        while (i < array.size() && array[i] < 0) { sum += array[i++]; }
 
         //зміна знаку суми
-        abs_sum = ((abs_sum < 0) ? (-1) * abs_sum : abs_sum);
+        sum = ((sum < 0) ? (-1) * sum : sum);
 
         //заміна нульових елементів на абсолютну суму
-        for (; i < arr.size();i++) {
-            if (arr[i] == 0) arr[i] = abs_sum;
-            else if (arr[i] > 0) break;
+        for (; i < array.size();i++) {
+            if (array[i] == 0) array[i] = sum;
+            else if (array[i] > 0) break;
         }
     }
 
