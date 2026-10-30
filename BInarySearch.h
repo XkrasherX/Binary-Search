@@ -53,6 +53,27 @@ public:
             if (arr[i] == 0) arr[i] = abs_sum;
             else if (arr[i] > 0) break;
         }
+    }
 
+    //бінарний пошук числа. повертає індекс числа або -1 якщо такого нема
+    int binarySearchAlgorithm(std::vector<int>& arr, int x, int &count) {
+        int low = 0;
+        int high = arr.size() - 1;
+        count = 1;
+        while (low <= high) {
+            //індекс
+            int mid = low + (high - low) / 2;
+
+            //якщо знайшли елемент
+            if (arr[mid] == x) return mid;
+
+            //якшо шуканий елемент більший, відкидаємо ліву частину
+            if (arr[mid] < x) low = mid + 1;
+
+            //якшо шуканий елемент менший, відкидкаємо праву частину
+            else high = mid - 1;
+            count++;
+        }
+        return -1;
     }
 };
