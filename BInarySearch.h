@@ -36,7 +36,7 @@ public:
 		//генерація випадкового числа(від'ємного також)
 		std::random_device rand;
 		std::mt19937 generate(rand());
-		std::uniform_int_distribution<int> number(-50, 20);
+		std::uniform_int_distribution<int> number(-10, 10);
 
 		//запис випадкового числа у вектор
 		for (int i = 0;i < size;i++) array.push_back(number(generate));
@@ -60,6 +60,9 @@ public:
             if (array[i] == 0) array[i] = sum;
             else if (array[i] > 0) break;
         }
+
+        //десь в масиві додалася сума невід'ємних, того треба ше раз посортувати
+        shellSort(array);
     }
 
     //бінарний пошук числа. повертає індекс числа або -1 якщо такого нема
