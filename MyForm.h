@@ -1,6 +1,7 @@
 ﻿#pragma once
 
-#include "BInarySearch.h"
+#include "BinarySearch.h"
+
 namespace lab8 {
 
 	using namespace System;
@@ -19,9 +20,7 @@ namespace lab8 {
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			array = new BinarySearch;
 		}
 
 	protected:
@@ -34,7 +33,10 @@ namespace lab8 {
 			{
 				delete components;
 			}
+			delete array;
+			array = nullptr;
 		}
+	private: BinarySearch* array;
 	private: System::Windows::Forms::Label^ EnterArraySizeLabel;
 	protected:
 	private: System::Windows::Forms::NumericUpDown^ ArraySizeUpDown;
@@ -53,7 +55,7 @@ namespace lab8 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -171,11 +173,15 @@ namespace lab8 {
 
 		}
 #pragma endregion
+	//кнопка для генерації масиву
 	private: System::Void GenerateRandArrButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		int size = Convert::ToInt32(ArraySizeUpDown->Text);
+
 	}
-private: System::Void FindTargetNumberButton_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void TargetNubmerTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void FindTargetNumberButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void TargetNubmerTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+
+	};
 }

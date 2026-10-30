@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BInarySearch.h">
+    <ClInclude Include="BinarySearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyForm.h">

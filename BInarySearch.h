@@ -24,7 +24,9 @@ private:
 
 
 public:
-	BinarySearch(int size) {
+    BinarySearch() { array.push_back(0); }
+
+	void createSortedArray(int size) {
 		//генерація випадкового числа(від'ємного також)
 		std::random_device rand;
 		std::mt19937 generate(rand());
