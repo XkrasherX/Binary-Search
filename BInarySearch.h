@@ -59,6 +59,8 @@ public:
     int binarySearchAlgorithm(std::vector<int>& arr, int x, int &count) {
         int low = 0;
         int high = arr.size() - 1;
+
+        //для підрахунку кількості порівнянь
         count = 1;
         while (low <= high) {
             //індекс
