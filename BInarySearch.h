@@ -26,6 +26,10 @@ private:
 public:
     BinarySearch() { array.push_back(0); }
 
+    int operator[](int index) const {
+        return array.at(index);
+    }
+
 	void createSortedArray(int size) {
 		//генерація випадкового числа(від'ємного також)
 		std::random_device rand;

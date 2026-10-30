@@ -175,8 +175,18 @@ namespace lab8 {
 #pragma endregion
 	//кнопка для генерації масиву
 	private: System::Void GenerateRandArrButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		InformationTextBox->Clear();
+		
+		//створення відсортованого масиву з випадковими числами
 		int size = Convert::ToInt32(ArraySizeUpDown->Text);
+		array->createSortedArray(size);
 
+		//вивід масиву
+		InformationTextBox->Text = "Масив випадкових чисел: " + Environment::NewLine;
+		for (int i = 0;i < size; i++) {
+			InformationTextBox->Text += " " + Convert::ToString((*array)[i]);
+		}
 	}
 	private: System::Void FindTargetNumberButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
