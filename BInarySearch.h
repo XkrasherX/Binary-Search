@@ -37,4 +37,22 @@ public:
         shellSort(array);
 	}
 
+    //індивідуальне завдання
+    void replaceZeroWithAbsSumOfNegativeNum(std::vector<int>& arr) {
+        int i = 0;
+        int abs_sum = 0;
+        
+        //обрахунок суми від'ємних значень
+        while (i < arr.size() && arr[i] < 0) { abs_sum += arr[i++]; }
+
+        //зміна знаку суми
+        abs_sum = ((abs_sum < 0) ? (-1) * abs_sum : abs_sum);
+
+        //заміна нульових елементів на абсолютну суму
+        for (; i < arr.size();i++) {
+            if (arr[i] == 0) arr[i] = abs_sum;
+            else if (arr[i] > 0) break;
+        }
+
+    }
 };
