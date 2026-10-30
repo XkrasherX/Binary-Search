@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <vector>
 #include <random>
 
@@ -31,6 +31,7 @@ public:
     int sizeOfVector() { return array.size(); }
 
     void clearAllData() { return array.clear(); }
+
 	void createSortedArray(int size) {
 		//генерація випадкового числа(від'ємного також)
 		std::random_device rand;
@@ -62,10 +63,10 @@ public:
     }
 
     //бінарний пошук числа. повертає індекс числа або -1 якщо такого нема
-    int binarySearchAlgorithm(int x, int &count) {
+    int binarySearchAlgorithm(int x, int &count, std::wstring& result) {
         int low = 0;
         int high = array.size() - 1;
-        
+        result = L"";
         //для підрахунку кількості порівнянь
         count = 1;
         while (low <= high) {
@@ -73,13 +74,29 @@ public:
             int mid = low + (high - low) / 2;
 
             //якщо знайшли елемент
-            if (array[mid] == x) return mid;
-
+            if (array[mid] == x) {
+                result += L" значення знайдено! ";
+                return mid;
+            }
             //якшо шуканий елемент більший, відкидаємо ліву частину
-            if (array[mid] < x) low = mid + 1;
-
+            if (array[mid] < x)
+            {   
+                result += L" відкидаємо ліву частину; Масив: ";
+                for (int i = mid; i < high+1;i++) {
+                    result += L" ";
+                    result += std::to_wstring(array[i]);
+                }
+                low = mid + 1;
+            }
             //якшо шуканий елемент менший, відкидкаємо праву частину
-            else high = mid - 1;
+            else {
+                result += L" відкидаємо праву частину; Масив: ";
+                for (int i = low; i < mid;i++) {
+                    result += L" ";
+                    result += std::to_wstring(array[i]);
+                }
+                high = mid - 1;
+            }
             count++;
         }
         return -1;

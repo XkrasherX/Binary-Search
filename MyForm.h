@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include <msclr/marshal_cppstd.h>
 #include "BinarySearch.h"
 
 namespace lab8 {
@@ -224,10 +224,12 @@ namespace lab8 {
 
 		int target_num = Convert::ToInt32(TargetNubmerTextBox->Text);
 		int count = 0;
-		int index = array->binarySearchAlgorithm(target_num, count);
+		std::wstring result = L" ";
+		int index = array->binarySearchAlgorithm(target_num, count, result);
 
 		if (index != -1) {
-			InformationTextBox->Text = "Число: " + Convert::ToString(target_num) +
+			InformationTextBox->Text = msclr::interop::marshal_as<System::String^>(result);
+			InformationTextBox->Text += "Число: " + Convert::ToString(target_num) +
 				" знадиться за індексом: " + Convert::ToString(index) + Environment::NewLine +
 				"Кількість порівнянь: " + Convert::ToString(count);
 		}
