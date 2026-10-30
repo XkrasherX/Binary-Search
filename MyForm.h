@@ -45,7 +45,9 @@ namespace lab8 {
 	private: System::Windows::Forms::Label^ EnterTargetNumberLabel;
 	private: System::Windows::Forms::TextBox^ TargetNubmerTextBox;
 	private: System::Windows::Forms::Button^ FindTargetNumberButton;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ IndividualTaskButton;
+	private: System::Windows::Forms::Button^ ShowArrayButton;
+
 
 
 
@@ -72,7 +74,8 @@ namespace lab8 {
 			this->EnterTargetNumberLabel = (gcnew System::Windows::Forms::Label());
 			this->TargetNubmerTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->FindTargetNumberButton = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->IndividualTaskButton = (gcnew System::Windows::Forms::Button());
+			this->ShowArrayButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ArraySizeUpDown))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -103,7 +106,7 @@ namespace lab8 {
 			// 
 			this->GenerateRandArrButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->GenerateRandArrButton->Location = System::Drawing::Point(474, 19);
+			this->GenerateRandArrButton->Location = System::Drawing::Point(18, 236);
 			this->GenerateRandArrButton->Name = L"GenerateRandArrButton";
 			this->GenerateRandArrButton->Size = System::Drawing::Size(269, 53);
 			this->GenerateRandArrButton->TabIndex = 2;
@@ -114,12 +117,12 @@ namespace lab8 {
 			// InformationTextBox
 			// 
 			this->InformationTextBox->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->InformationTextBox->Location = System::Drawing::Point(18, 187);
+			this->InformationTextBox->Location = System::Drawing::Point(18, 313);
 			this->InformationTextBox->Multiline = true;
 			this->InformationTextBox->Name = L"InformationTextBox";
 			this->InformationTextBox->ReadOnly = true;
 			this->InformationTextBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->InformationTextBox->Size = System::Drawing::Size(446, 420);
+			this->InformationTextBox->Size = System::Drawing::Size(571, 294);
 			this->InformationTextBox->TabIndex = 3;
 			// 
 			// EnterTargetNumberLabel
@@ -147,7 +150,7 @@ namespace lab8 {
 			// 
 			this->FindTargetNumberButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->FindTargetNumberButton->Location = System::Drawing::Point(474, 95);
+			this->FindTargetNumberButton->Location = System::Drawing::Point(320, 240);
 			this->FindTargetNumberButton->Name = L"FindTargetNumberButton";
 			this->FindTargetNumberButton->Size = System::Drawing::Size(269, 53);
 			this->FindTargetNumberButton->TabIndex = 6;
@@ -155,21 +158,34 @@ namespace lab8 {
 			this->FindTargetNumberButton->UseVisualStyleBackColor = true;
 			this->FindTargetNumberButton->Click += gcnew System::EventHandler(this, &MyForm::FindTargetNumberButton_Click);
 			// 
-			// button1
+			// IndividualTaskButton
 			// 
-			this->button1->Location = System::Drawing::Point(474, 174);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(269, 53);
-			this->button1->TabIndex = 7;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
+			this->IndividualTaskButton->Location = System::Drawing::Point(320, 161);
+			this->IndividualTaskButton->Name = L"IndividualTaskButton";
+			this->IndividualTaskButton->Size = System::Drawing::Size(269, 53);
+			this->IndividualTaskButton->TabIndex = 7;
+			this->IndividualTaskButton->Text = L"Індивідуальне завдання";
+			this->IndividualTaskButton->UseVisualStyleBackColor = true;
+			// 
+			// ShowArrayButton
+			// 
+			this->ShowArrayButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->ShowArrayButton->Location = System::Drawing::Point(18, 161);
+			this->ShowArrayButton->Name = L"ShowArrayButton";
+			this->ShowArrayButton->Size = System::Drawing::Size(269, 53);
+			this->ShowArrayButton->TabIndex = 8;
+			this->ShowArrayButton->Text = L"Вивести масив";
+			this->ShowArrayButton->UseVisualStyleBackColor = true;
+			this->ShowArrayButton->Click += gcnew System::EventHandler(this, &MyForm::ShowArrayButton_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(764, 628);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(631, 628);
+			this->Controls->Add(this->ShowArrayButton);
+			this->Controls->Add(this->IndividualTaskButton);
 			this->Controls->Add(this->FindTargetNumberButton);
 			this->Controls->Add(this->TargetNubmerTextBox);
 			this->Controls->Add(this->EnterTargetNumberLabel);
@@ -224,5 +240,15 @@ namespace lab8 {
 	private: System::Void TargetNubmerTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	};
+	//кнопка для виводу масиву 
+	private: System::Void ShowArrayButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		InformationTextBox->Clear();
+
+		//вивід масиву
+		InformationTextBox->Text = "Масив: " + Environment::NewLine;
+		for (int i = 0; i < array->sizeOfVector();i++) {
+			InformationTextBox->Text += " " + Convert::ToString((*array)[i]);
+		}
+	}
+};
 }
