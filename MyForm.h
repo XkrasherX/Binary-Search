@@ -45,6 +45,7 @@ namespace lab8 {
 	private: System::Windows::Forms::Label^ EnterTargetNumberLabel;
 	private: System::Windows::Forms::TextBox^ TargetNubmerTextBox;
 	private: System::Windows::Forms::Button^ FindTargetNumberButton;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -71,6 +72,7 @@ namespace lab8 {
 			this->EnterTargetNumberLabel = (gcnew System::Windows::Forms::Label());
 			this->TargetNubmerTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->FindTargetNumberButton = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ArraySizeUpDown))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -117,7 +119,7 @@ namespace lab8 {
 			this->InformationTextBox->Name = L"InformationTextBox";
 			this->InformationTextBox->ReadOnly = true;
 			this->InformationTextBox->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->InformationTextBox->Size = System::Drawing::Size(731, 281);
+			this->InformationTextBox->Size = System::Drawing::Size(446, 420);
 			this->InformationTextBox->TabIndex = 3;
 			// 
 			// EnterTargetNumberLabel
@@ -153,11 +155,21 @@ namespace lab8 {
 			this->FindTargetNumberButton->UseVisualStyleBackColor = true;
 			this->FindTargetNumberButton->Click += gcnew System::EventHandler(this, &MyForm::FindTargetNumberButton_Click);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(474, 174);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(269, 53);
+			this->button1->TabIndex = 7;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(764, 495);
+			this->ClientSize = System::Drawing::Size(764, 628);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->FindTargetNumberButton);
 			this->Controls->Add(this->TargetNubmerTextBox);
 			this->Controls->Add(this->EnterTargetNumberLabel);
@@ -188,8 +200,27 @@ namespace lab8 {
 			InformationTextBox->Text += " " + Convert::ToString((*array)[i]);
 		}
 	}
+
+	//кнопка для пошуку заданого числа в масиві
 	private: System::Void FindTargetNumberButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		InformationTextBox->Clear();
+
+		int target_num = Convert::ToInt32(TargetNubmerTextBox->Text);
+		int count = 0;
+		int index = array->binarySearchAlgorithm(target_num, count);
+
+		if (index != -1) {
+			InformationTextBox->Text = "Число: " + Convert::ToString(target_num) +
+				" знадиться за індексом: " + Convert::ToString(index) + Environment::NewLine +
+				"Кількість порівнянь: " + Convert::ToString(count);
+		}
+		else {
+			InformationTextBox->Text = "Число " + Convert::ToString(target_num) +
+				" відсутнє у записі! ";
+		}
 	}
+	
+
 	private: System::Void TargetNubmerTextBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 

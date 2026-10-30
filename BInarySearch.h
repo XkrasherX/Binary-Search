@@ -34,7 +34,7 @@ public:
 		//генерація випадкового числа(від'ємного також)
 		std::random_device rand;
 		std::mt19937 generate(rand());
-		std::uniform_int_distribution<int> number(-50, 951);
+		std::uniform_int_distribution<int> number(-50, 20);
 
 		//запис випадкового числа у вектор
 		for (int i = 0;i < size;i++) array.push_back(number(generate));
@@ -62,10 +62,10 @@ public:
     }
 
     //бінарний пошук числа. повертає індекс числа або -1 якщо такого нема
-    int binarySearchAlgorithm(std::vector<int>& arr, int x, int &count) {
+    int binarySearchAlgorithm(int x, int &count) {
         int low = 0;
-        int high = arr.size() - 1;
-
+        int high = array.size() - 1;
+        
         //для підрахунку кількості порівнянь
         count = 1;
         while (low <= high) {
@@ -73,10 +73,10 @@ public:
             int mid = low + (high - low) / 2;
 
             //якщо знайшли елемент
-            if (arr[mid] == x) return mid;
+            if (array[mid] == x) return mid;
 
             //якшо шуканий елемент більший, відкидаємо ліву частину
-            if (arr[mid] < x) low = mid + 1;
+            if (array[mid] < x) low = mid + 1;
 
             //якшо шуканий елемент менший, відкидкаємо праву частину
             else high = mid - 1;
